@@ -1,0 +1,34 @@
+if game.PlaceId == 5096842882 then
+    local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+    local Window = Library.CreateLib("Exp Farm Destroyer hah so ez", "Midnight")
+
+    -- Main
+    local ExpTab = Window:NewTab("Exp Farm")
+    local ExpSection = ExpTab:NewSection("Exp Farm")
+
+    ExpSection:NewToggle("Auto Exp", "Auto Farm Exp", function(state)
+        if state then
+            _G.loop = true
+            while _G.loop == true do wait()
+                print("Toggle on")
+    
+                local args = {
+                    [1] = workspace.NPC.Borock.LeftFoot
+                }
+                
+                game:GetService("ReplicatedStorage").OnSuccessfulHit:FireServer(unpack(args))
+            end
+        else
+            _G.loop = false
+            while _G.loop do wait()
+                print("Toggle off")
+    
+                local args = {
+                    [1] = workspace.NPC.Borock.LeftFoot
+                }
+                
+                game:GetService("ReplicatedStorage").OnSuccessfulHit:FireServer(unpack(args))
+            end
+        end
+    end)
+end
